@@ -6,9 +6,6 @@ module.exports = {
       backgroundImage: {
         login: "url('/src/assets/images/bg.jpg')",
       },
-      fontFamily: {
-        regular: ["Oswald", "sans-serif"],
-      },
       backgroundPosition: {
         "pos-0": "0% 0%",
         "pos-100": "100% 100%",

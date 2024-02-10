@@ -1,3 +1,7 @@
 .main-btn {
-  @apply bg-gradient-to-bl from-red-300 to-red-500  transition-all duration-500 hover:scale-105 text-white font-regular w-28 py-2 px-4;
+  @apply rounded-sm bg-gradient-to-bl from-red-300 to-red-500  transition-all duration-500 hover:scale-105 text-white  w-28 py-2 px-4;
+}
+
+.main-input {
+  @apply shadow appearance-none border w-72 py-2 px-3 leading-tight focus:outline-none rounded-sm;
 }

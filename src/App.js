@@ -6,6 +6,8 @@ import Login from "./pages/login/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import { PrivateRoutes } from "./utils/PrivateRoutes";
+// eslint-disable-next-line no-unused-vars
+import FirebaseService from "./services/FirebaseService";
 
 export default function App() {
   return (
