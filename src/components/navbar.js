@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="bg-red-500 text-white flex flex-row h-16 px-20 justify-between items-center">
+    <nav className="bg-red-500 text-white flex flex-row h-16 px-20 justify-between items-center absolute w-full">
       <div>
         <Link to="/" className="font-bold text-2xl">
           Finance Tracker
