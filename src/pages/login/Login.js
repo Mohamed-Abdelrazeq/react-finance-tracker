@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.css";
+import AuthService from "../../services/AuthService";
 
 export default function Login() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const authService = new AuthService();
+
+  const handleLogin = () => {
+    authService
+      .login(username, password)
+      .then((response) => {
+        if (response.message) {
+          alert(response.message);
+          return;
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  };
+
   return (
-    <div
-      className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover"
-      style={{ minHeight: `calc(100vh - 64px)` }}
-    >
-      <form className="bg-white px-8 pt-6 pb-8 flex flex-col items-center">
+    <div className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover h-screen">
+      <form className="bg-white px-6 pt-4 pb-8 flex flex-col items-center rounded-lg">
         <div className="mb-4">
           <label
             className="block text-gray-700 text-lg font-regular mb-2"
@@ -16,10 +33,12 @@ export default function Login() {
             Username
           </label>
           <input
-            className="shadow appearance-none border  w-72 py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+            className="main-input"
             id="username"
             type="text"
             placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div className="mb-6">
@@ -30,13 +49,15 @@ export default function Login() {
             Password
           </label>
           <input
-            className="shadow appearance-none border  w-72 py-2 px-3  leading-tight focus:outline-none focus:shadow-outline"
+            className="main-input"
             id="password"
             type="password"
             placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button className="main-btn" type="button">
+        <button className="main-btn" type="button" onClick={handleLogin}>
           Sign In
         </button>
       </form>
