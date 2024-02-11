@@ -1,6 +1,7 @@
 .main-btn {
-  @apply rounded-sm bg-gradient-to-bl from-red-300 to-red-500 text-white font-light;
+  @apply rounded-md bg-cyan-500 text-white font-light;
   @apply w-28 py-2 px-4;
+  @apply hover:brightness-105;
 }
 
 .main-input {
