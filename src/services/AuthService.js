@@ -11,7 +11,10 @@ class AuthService {
 
   responseMessage = Object.freeze({
     invalidCredential: "Invalid credential",
+    invalidEmail: "Invalid email",
+    weakPassword: "Password should be at least 6 characters",
     loggedIn: "Logged in successfully!",
+    registered: "Registered successfully!",
     somethingWentWrong: "Something went wrong",
   });
 
@@ -28,7 +31,6 @@ class AuthService {
         user: user,
       };
     } catch (error) {
-      console.log(error.code);
       if (error.code === "auth/invalid-credential") {
         return { message: this.responseMessage.invalidCredential };
       }
@@ -44,10 +46,22 @@ class AuthService {
         password
       );
       const user = userCredential.user;
-      return user;
+      return {
+        message: this.responseMessage.registered,
+        user: user,
+      };
     } catch (error) {
-      const errorMessage = error.message;
-      return errorMessage;
+      console.log(error.code);
+      if (error.code === "auth/invalid-email") {
+        return { message: this.responseMessage.invalidEmail };
+      }
+      if (error.code === "auth/weak-password") {
+        return { message: this.responseMessage.weakPassword };
+      }
+      if (error.code === "auth/email-already-in-use") {
+        return { message: "Email already in use" };
+      }
+      return { message: this.responseMessage.somethingWentWrong };
     }
   }
 }

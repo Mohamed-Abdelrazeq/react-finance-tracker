@@ -12,7 +12,7 @@ export default function Register() {
   const { updateUser } = useContext(AuthContext);
 
   async function handleLogin() {
-    const response = await authService.login(
+    const response = await authService.register(
       usernameRef.current.value,
       passwordRef.current.value
     );
