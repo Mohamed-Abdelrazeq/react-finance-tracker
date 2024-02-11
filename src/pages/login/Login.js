@@ -24,14 +24,9 @@ export default function Login() {
 
   return (
     <div className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover h-screen">
-      <form className="bg-white px-6 pt-4 pb-8 flex flex-col items-center rounded-lg">
+      <form className="card">
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-lg font-regular mb-2"
-            htmlFor="username"
-          >
-            Username
-          </label>
+          <label className="main-label">Username</label>
           <input
             className="main-input"
             id="username"
@@ -42,12 +37,7 @@ export default function Login() {
           />
         </div>
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-lg font-regular mb-2"
-            htmlFor="password"
-          >
-            Password
-          </label>
+          <label className="main-label">Password</label>
           <input
             className="main-input"
             id="password"
