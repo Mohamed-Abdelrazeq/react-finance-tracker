@@ -1,0 +1,16 @@
+.main-btn {
+  @apply rounded-sm bg-gradient-to-bl from-red-300 to-red-500 text-white font-light;
+  @apply w-28 py-2 px-4;
+}
+
+.main-input {
+  @apply shadow appearance-none border w-72 py-2 px-3 leading-tight focus:outline-none rounded-sm;
+}
+
+.card {
+  @apply bg-white px-6 pt-4 pb-8 flex flex-col items-center rounded-lg;
+}
+
+.main-label {
+  @apply block text-gray-700 text-lg mb-2;
+}

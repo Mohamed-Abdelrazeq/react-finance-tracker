@@ -1,7 +1,6 @@
 import React, { useContext, useRef } from "react";
-import "./Login.css";
-import AuthService from "../../services/AuthService";
-import { AuthContext } from "../../contexts/AuthContext";
+import AuthService from "../services/AuthService";
+import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -27,8 +26,9 @@ export default function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover h-screen">
-      <form className="card">
+    <div className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover h-screen text-neutral-800">
+      <form className="card scale-110">
+        <h1 className="text-3xl font-bold text-center mb-4 ">Login</h1>
         <div className="mb-4">
           <label className="main-label">Username</label>
           <input
