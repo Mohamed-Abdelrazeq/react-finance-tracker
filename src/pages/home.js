@@ -5,21 +5,20 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 bg-home">
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-4xl font-bold mb-4">Welcome to our website</h1>
-        <p className="text-lg text-gray-600">
-          Discover the best finance solutions
+        <h1 className="text-6xl font-bold mb-4 text-teal-600">
+          Welcome to Finance Tracker
+        </h1>
+        <p className="text-2xl text-teal-600">
+          Discover the best financial solutions
         </p>
         <div className="mt-8">
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mr-4"
-            onClick={() => navigate("/login")}
-          >
+          <button className="main-btn mr-4" onClick={() => navigate("/login")}>
             Login
           </button>
           <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4"
+            className="secondary-btn"
             onClick={() => navigate("/register")}
           >
             Register

@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         login: "url('/src/assets/images/bg.jpg')",
+        home: "url('/src/assets/images/home-bg.jpg')",
       },
       backgroundPosition: {
         "pos-0": "0% 0%",

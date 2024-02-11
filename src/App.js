@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -12,7 +11,6 @@ import FirebaseService from "./services/FirebaseService";
 export default function App() {
   return (
     <div className="App">
-      <Navbar />
       <Routes>
         <Route element={<PrivateRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />

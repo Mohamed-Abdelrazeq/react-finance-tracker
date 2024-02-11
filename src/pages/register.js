@@ -26,9 +26,11 @@ export default function Register() {
   }
 
   return (
-    <div className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover h-screen text-neutral-800">
+    <div className="flex justify-center items-center bg-home bg-image bg-no-repeat bg-cover h-screen text-neutral-800">
       <form className="card scale-110">
-        <h1 className="text-3xl font-bold text-center mb-4 ">Register</h1>
+        <h1 className="text-3xl font-bold text-center mb-6 text-teal-500">
+          Register
+        </h1>
         <div className="mb-4">
           <label className="main-label">Username</label>
           <input
@@ -48,7 +50,7 @@ export default function Register() {
           />
         </div>
         <button className="main-btn" type="button" onClick={handleLogin}>
-          Sign In
+          Sign Up
         </button>
       </form>
     </div>
