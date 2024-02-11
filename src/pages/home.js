@@ -5,12 +5,12 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gray-200 bg-home">
+    <div className="bg-home">
       <div className="flex flex-col items-center justify-center h-screen">
-        <h1 className="text-6xl font-bold mb-4 text-teal-600">
+        <h1 className="text-6xl font-bold mb-4 text-teal-500">
           Welcome to Finance Tracker
         </h1>
-        <p className="text-2xl text-teal-600">
+        <p className="text-2xl text-teal-500">
           Discover the best financial solutions
         </p>
         <div className="mt-8">
