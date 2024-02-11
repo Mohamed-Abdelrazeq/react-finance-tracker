@@ -9,24 +9,36 @@ class AuthService {
     this.auth = getAuth();
   }
 
-  async register(email, password) {
+  responseMessage = Object.freeze({
+    invalidCredential: "Invalid credential",
+    loggedIn: "Logged in successfully!",
+    somethingWentWrong: "Something went wrong",
+  });
+
+  async login(email, password) {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
+      const userCredential = await signInWithEmailAndPassword(
         this.auth,
         email,
         password
       );
       const user = userCredential.user;
-      return user;
+      return {
+        message: this.responseMessage.loggedIn,
+        user: user,
+      };
     } catch (error) {
-      const errorMessage = error.message;
-      return errorMessage;
+      console.log(error.code);
+      if (error.code === "auth/invalid-credential") {
+        return { message: this.responseMessage.invalidCredential };
+      }
+      return { message: this.responseMessage.somethingWentWrong };
     }
   }
 
-  async login(email, password) {
+  async register(email, password) {
     try {
-      const userCredential = await signInWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         this.auth,
         email,
         password

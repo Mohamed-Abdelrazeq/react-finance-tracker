@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useRef } from "react";
 import "./Login.css";
 import AuthService from "../../services/AuthService";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const authService = new AuthService();
+  const usernameRef = useRef();
+  const passwordRef = useRef();
 
-  const handleLogin = () => {
-    authService
-      .login(username, password)
-      .then((response) => {
-        if (response.message) {
-          alert(response.message);
-          return;
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        alert(error);
-      });
-  };
+  const navigate = useNavigate();
+  const authService = new AuthService();
+  const { updateUser } = useContext(AuthContext);
+
+  async function handleLogin() {
+    const response = await authService.login(
+      usernameRef.current.value,
+      passwordRef.current.value
+    );
+
+    alert(response.message);
+
+    if (response.user) {
+      updateUser(response.user);
+      navigate("/dashboard");
+    }
+  }
 
   return (
     <div className="flex justify-center items-center bg-login bg-image bg-no-repeat bg-cover h-screen">
@@ -29,22 +33,18 @@ export default function Login() {
           <label className="main-label">Username</label>
           <input
             className="main-input"
-            id="username"
             type="text"
             placeholder="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            ref={usernameRef}
           />
         </div>
         <div className="mb-6">
           <label className="main-label">Password</label>
           <input
             className="main-input"
-            id="password"
             type="password"
             placeholder="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            ref={passwordRef}
           />
         </div>
         <button className="main-btn" type="button" onClick={handleLogin}>
