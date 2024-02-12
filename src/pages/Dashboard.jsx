@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { TransactionsService } from "../services/TransactionsService.jsx";
 import AddTransaction from "../components/AddTransaction.jsx";
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext.js";
 import { useContext } from "react";
 
 export default function Dashboard() {
