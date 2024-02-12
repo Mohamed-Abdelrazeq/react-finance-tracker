@@ -13,7 +13,6 @@ import {
 export class TransactionsService {
   constructor() {
     this.db = getFirestore();
-    this.token = localStorage.getItem("token");
   }
 
   async createTransaction(transactionData) {
@@ -45,10 +44,7 @@ export class TransactionsService {
   async updateTransaction(transactionId, updatedData) {
     try {
       const docRef = doc(this.db, "transactions", transactionId);
-      await updateDoc(docRef, {
-        ...updatedData,
-        token: this.token,
-      });
+      await updateDoc(docRef, updatedData);
     } catch (error) {
       return { error: error.message };
     }
