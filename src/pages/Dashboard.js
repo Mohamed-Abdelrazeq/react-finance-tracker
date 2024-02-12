@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
+import { TransactionsService } from "../services/TransactionsService";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function Dashboard() {
+  const { user } = useContext(AuthContext);
+  const transactionsService = new TransactionsService();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
+  async function onSubmit(data) {
+    const response = await transactionsService.createTransaction({
+      title: data.title,
+      amount: parseFloat(data.amount),
+      uid: user.uid,
+    });
+    if (response.error) {
+      alert(response.error);
+    }
+    console.log(response);
+  }
+
+  useEffect(() => {
+    const transactions = async () => {
+      const response = await transactionsService.getTransactionsByUserId(
+        user.uid
+      );
+      console.log(response);
+    };
+    transactions();
+  }, []);
 
   return (
     <div className="container flex flex-row min-h-screen m-auto py-20">

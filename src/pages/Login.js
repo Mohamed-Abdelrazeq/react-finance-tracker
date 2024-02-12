@@ -21,6 +21,7 @@ export default function Login() {
 
     if (response.user) {
       updateUser(response.user);
+      localStorage.setItem("token", response.user.accessToken);
       navigate("/dashboard");
     }
   }
