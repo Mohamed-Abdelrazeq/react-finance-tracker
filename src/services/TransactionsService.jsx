@@ -3,48 +3,29 @@ import {
   collection,
   addDoc,
   doc,
-  getDoc,
-  updateDoc,
   deleteDoc,
   query,
   where,
   getDocs,
 } from "firebase/firestore";
+
 export class TransactionsService {
-  constructor() {
-    this.db = getFirestore();
+  constructor(user) {
+    if (!TransactionsService.instance) {
+      this.db = getFirestore();
+      this.user = user;
+      TransactionsService.instance = this;
+    }
+    return TransactionsService.instance;
   }
 
   async createTransaction(transactionData) {
     try {
-      const docRef = await addDoc(
-        collection(this.db, "transactions"),
-        transactionData
-      );
+      const docRef = await addDoc(collection(this.db, "transactions"), {
+        ...transactionData,
+        uid: this.user.uid,
+      });
       return docRef.id;
-    } catch (error) {
-      return { error: error.message };
-    }
-  }
-
-  async getTransactionById(transactionId) {
-    try {
-      const docRef = doc(this.db, "transactions", transactionId);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        return docSnap.data();
-      } else {
-        throw new Error("Transaction not found");
-      }
-    } catch (error) {
-      return { error: error.message };
-    }
-  }
-
-  async updateTransaction(transactionId, updatedData) {
-    try {
-      const docRef = doc(this.db, "transactions", transactionId);
-      await updateDoc(docRef, updatedData);
     } catch (error) {
       return { error: error.message };
     }
@@ -59,11 +40,11 @@ export class TransactionsService {
     }
   }
 
-  async getTransactionsByUserId(userId) {
+  async getTransactionsByUserId() {
     try {
       const q = query(
         collection(this.db, "transactions"),
-        where("uid", "==", userId)
+        where("uid", "==", this.user.uid)
       );
       const querySnapshot = await getDocs(q);
       const transactions = [];
