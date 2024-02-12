@@ -11,7 +11,7 @@
 }
 
 .card {
-  @apply bg-white px-6 py-8 flex flex-col items-center rounded-lg shadow-xl;
+  @apply bg-white px-6 py-8 flex flex-col items-center rounded-lg shadow-2xl;
 }
 
 .main-label {
