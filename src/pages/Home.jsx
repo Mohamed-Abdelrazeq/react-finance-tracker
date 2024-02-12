@@ -6,7 +6,7 @@ export default function Home() {
 
   return (
     <div className="bg-home">
-      <div className="flex flex-col items-center justify-center h-screen">
+      <div className="flex flex-col items-center justify-center bg-cover h-screen">
         <h1 className="text-6xl font-bold mb-4 text-teal-500">
           Welcome to Finance Tracker
         </h1>

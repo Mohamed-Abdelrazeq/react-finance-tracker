@@ -21,7 +21,7 @@ export default function Dashboard() {
   }, [transactionsService]);
 
   return (
-    <div className="bg-home">
+    <div className="bg-home bg-cover">
       <div className="flex flex-row min-h-screen m-auto w-10/12 py-20">
         <div className="basis-2/3 ">
           {transactions.map((transaction) => (
