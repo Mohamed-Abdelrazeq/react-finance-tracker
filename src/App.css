@@ -7,7 +7,7 @@
 }
 
 .main-input {
-  @apply shadow appearance-none border w-72 py-2 px-3 leading-tight focus:outline-none rounded-sm;
+  @apply block px-3 py-3 placeholder-neutral-300 text-neutral-600 bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring;
 }
 
 .card {
