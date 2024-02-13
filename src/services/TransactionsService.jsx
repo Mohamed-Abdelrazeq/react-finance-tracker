@@ -7,6 +7,7 @@ import {
   query,
   where,
   getDocs,
+  orderBy,
 } from "firebase/firestore";
 
 export class TransactionsService {
@@ -48,7 +49,8 @@ export class TransactionsService {
     try {
       const q = query(
         collection(this.db, "transactions"),
-        where("uid", "==", this.user.uid)
+        where("uid", "==", this.user.uid),
+        orderBy("date", "desc")
       );
       const querySnapshot = await getDocs(q);
       const transactions = [];

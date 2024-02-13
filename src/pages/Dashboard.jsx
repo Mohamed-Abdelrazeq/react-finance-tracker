@@ -8,8 +8,10 @@ export default function Dashboard() {
   const transactionsService = useMemo(() => new TransactionsService(), []);
 
   useEffect(() => {
+    console.log("useEffect");
     const transactions = async () => {
       const response = await transactionsService.getTransactionsByUserId();
+      console.log("response", response);
       setTransactions(response);
     };
     transactions();

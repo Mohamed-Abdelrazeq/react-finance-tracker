@@ -15,7 +15,7 @@ export default function AddTransaction({
 
   async function onSubmit(data) {
     const response = await transactionsService.createTransaction({
-      title: data.title,
+      title: data.title.trim(),
       amount: parseFloat(data.amount),
     });
     if (response.error) {
@@ -34,7 +34,7 @@ export default function AddTransaction({
         <input
           className="main-input w-72"
           type="name"
-          placeholder="Enter payment title"
+          placeholder="Enter transaction title"
           {...register("title", { required: "The title is required" })}
         />
         <div className="text-red-500 mt-1 mb-4">
@@ -44,7 +44,7 @@ export default function AddTransaction({
         <input
           className="main-input w-72"
           type="number"
-          placeholder="Enter payment amount"
+          placeholder="Enter transaction amount"
           {...register("amount", { required: "The amount is required" })}
         />
         <div className="text-red-500 mt-1">
