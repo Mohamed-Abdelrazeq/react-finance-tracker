@@ -11,10 +11,10 @@ import {
 } from "firebase/firestore";
 
 export class TransactionsService {
-  constructor() {
+  constructor(user) {
     if (!TransactionsService.instance) {
       this.db = getFirestore();
-      this.user = JSON.parse(localStorage.getItem("user")) || {};
+      this.user = user;
       TransactionsService.instance = this;
     }
     return TransactionsService.instance;
@@ -57,7 +57,6 @@ export class TransactionsService {
       querySnapshot.forEach((doc) => {
         transactions.push({ id: doc.id, ...doc.data() });
       });
-      console.log(transactions);
       return transactions;
     } catch (error) {
       return { error: error.message };

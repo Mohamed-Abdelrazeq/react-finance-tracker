@@ -8,20 +8,19 @@ import { AuthContext } from "../contexts/AuthContext.jsx";
 
 export default function Dashboard() {
   const [transactions, setTransactions] = useState([]);
-  const transactionsService = useMemo(() => new TransactionsService(), []);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const transactionsService = new TransactionsService(user);
   const authService = useMemo(() => new AuthService(), []);
   const naivgator = useNavigate();
   const { updateUser } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log("useEffect");
     const transactions = async () => {
       const response = await transactionsService.getTransactionsByUserId();
-      console.log("response", response);
       setTransactions(response);
     };
     transactions();
-  }, [transactionsService]);
+  }, []);
 
   const handleLogout = async () => {
     const response = await authService.logout();

@@ -21,13 +21,13 @@ export default function Login() {
       data.password.trim()
     );
 
-    alert(response.message);
-
     if (response.user) {
       updateUser(response.user);
       localStorage.setItem("user", JSON.stringify(response.user));
       navigate("/dashboard");
     }
+
+    alert(response.message);
   }
 
   return (

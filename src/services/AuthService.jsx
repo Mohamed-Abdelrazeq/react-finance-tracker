@@ -51,7 +51,6 @@ export class AuthService {
         user: user,
       };
     } catch (error) {
-      console.log(error.code);
       if (error.code === "auth/invalid-email") {
         return { message: this.responseMessage.invalidEmail };
       }
