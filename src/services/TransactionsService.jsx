@@ -10,10 +10,10 @@ import {
 } from "firebase/firestore";
 
 export class TransactionsService {
-  constructor(user) {
+  constructor() {
     if (!TransactionsService.instance) {
       this.db = getFirestore();
-      this.user = user;
+      this.user = JSON.parse(localStorage.getItem("user")) || {};
       TransactionsService.instance = this;
     }
     return TransactionsService.instance;
@@ -29,6 +29,7 @@ export class TransactionsService {
       const docRef = await addDoc(collection(this.db, "transactions"), data);
       return { id: docRef.id, ...data };
     } catch (error) {
+      console.error("Error adding document: ", error);
       return { error: error.message };
     }
   }
@@ -54,6 +55,7 @@ export class TransactionsService {
       querySnapshot.forEach((doc) => {
         transactions.push({ id: doc.id, ...doc.data() });
       });
+      console.log(transactions);
       return transactions;
     } catch (error) {
       return { error: error.message };

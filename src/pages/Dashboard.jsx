@@ -1,17 +1,11 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { TransactionsService } from "../services/TransactionsService.jsx";
 import AddTransaction from "../components/AddTransaction.jsx";
-import { AuthContext } from "../contexts/AuthContext.js";
-import { useContext } from "react";
 import TransactionsFeed from "../components/TransactionsFeed.jsx";
 
 export default function Dashboard() {
   const [transactions, setTransactions] = useState([]);
-  const { user } = useContext(AuthContext);
-  const transactionsService = useMemo(
-    () => new TransactionsService(user),
-    [user]
-  );
+  const transactionsService = useMemo(() => new TransactionsService(), []);
 
   useEffect(() => {
     const transactions = async () => {
