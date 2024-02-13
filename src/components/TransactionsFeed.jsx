@@ -13,7 +13,7 @@ export default function TransactionsFeed({
   };
 
   return (
-    <div className="basis-2/3 pr-12">
+    <div className="md:basis-2/3 mt-10 md:mt-10 md:pr-12">
       {transactions.length > 0 &&
         transactions.map((transaction) => (
           <div
