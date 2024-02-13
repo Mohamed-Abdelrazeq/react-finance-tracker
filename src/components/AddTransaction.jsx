@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 
 export default function AddTransaction({
   transactionsService,
-  transactions,
   setTransactions,
 }) {
   const {
