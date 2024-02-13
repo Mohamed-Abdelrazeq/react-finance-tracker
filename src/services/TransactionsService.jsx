@@ -11,10 +11,9 @@ import {
 } from "firebase/firestore";
 
 export class TransactionsService {
-  constructor(user) {
+  constructor() {
     if (!TransactionsService.instance) {
       this.db = getFirestore();
-      this.user = user;
       TransactionsService.instance = this;
     }
     return TransactionsService.instance;
@@ -24,7 +23,7 @@ export class TransactionsService {
     try {
       const data = {
         ...transactionData,
-        uid: this.user.uid,
+        uid: JSON.parse(localStorage.getItem("user")).uid,
         date: new Date().toISOString(),
       };
       const docRef = await addDoc(collection(this.db, "transactions"), data);
@@ -49,7 +48,7 @@ export class TransactionsService {
     try {
       const q = query(
         collection(this.db, "transactions"),
-        where("uid", "==", this.user.uid),
+        where("uid", "==", JSON.parse(localStorage.getItem("user")).uid),
         orderBy("date", "desc")
       );
       const querySnapshot = await getDocs(q);
