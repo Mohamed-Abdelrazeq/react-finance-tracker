@@ -1,7 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-export default function AddTransaction(transactionsService) {
+export default function AddTransaction({
+  transactionsService,
+  transactions,
+  setTransactions,
+}) {
   const {
     register,
     handleSubmit,
@@ -15,8 +19,10 @@ export default function AddTransaction(transactionsService) {
     });
     if (response.error) {
       alert(response.error);
+      return;
     }
     console.log(response);
+    setTransactions((prevTransactions) => [...prevTransactions, response]);
   }
 
   return (

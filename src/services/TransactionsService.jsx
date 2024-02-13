@@ -21,11 +21,13 @@ export class TransactionsService {
 
   async createTransaction(transactionData) {
     try {
-      const docRef = await addDoc(collection(this.db, "transactions"), {
+      const data = {
         ...transactionData,
         uid: this.user.uid,
-      });
-      return docRef.id;
+        date: new Date().toISOString(),
+      };
+      const docRef = await addDoc(collection(this.db, "transactions"), data);
+      return { id: docRef.id, ...data };
     } catch (error) {
       return { error: error.message };
     }
@@ -36,6 +38,7 @@ export class TransactionsService {
       const docRef = doc(this.db, "transactions", transactionId);
       await deleteDoc(docRef);
     } catch (error) {
+      console.error("Error removing document: ", error);
       return { error: error.message };
     }
   }
