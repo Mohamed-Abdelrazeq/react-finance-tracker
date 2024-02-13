@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import AuthService from "../services/AuthService";
+import { AuthService } from "../services/AuthService";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 

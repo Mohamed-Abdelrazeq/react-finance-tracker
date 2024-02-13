@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
-class AuthService {
+export class AuthService {
   constructor() {
     this.auth = getAuth();
   }
@@ -64,6 +64,13 @@ class AuthService {
       return { message: this.responseMessage.somethingWentWrong };
     }
   }
-}
 
-export default AuthService;
+  async logout() {
+    try {
+      await this.auth.signOut();
+      return { message: "Logged out successfully!" };
+    } catch (error) {
+      return { message: this.responseMessage.somethingWentWrong };
+    }
+  }
+}

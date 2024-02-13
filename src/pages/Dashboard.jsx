@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { TransactionsService } from "../services/TransactionsService.jsx";
+import { AuthService } from "../services/AuthService.jsx";
 import AddTransaction from "../components/AddTransaction.jsx";
 import TransactionsFeed from "../components/TransactionsFeed.jsx";
+import { useNavigate } from "react-router-dom";
 
 export default function Dashboard() {
   const [transactions, setTransactions] = useState([]);
   const transactionsService = useMemo(() => new TransactionsService(), []);
+  const authService = useMemo(() => new AuthService(), []);
+  const naivgator = useNavigate();
 
   useEffect(() => {
     console.log("useEffect");
@@ -16,6 +20,17 @@ export default function Dashboard() {
     };
     transactions();
   }, [transactionsService]);
+
+  const handleLogout = async () => {
+    const response = await authService.logout();
+    if (response.error) {
+      alert(response.error);
+      return;
+    }
+    localStorage.removeItem("user");
+    alert("Logged out successfully!");
+    naivgator("/");
+  };
 
   return (
     <div className="bg-home bg-cover">
@@ -30,6 +45,14 @@ export default function Dashboard() {
           transaction={transactions}
           setTransactions={setTransactions}
         />
+        <div className="fixed bottom-10 right-10  w-12 h-12 rounded-full bg-teal-500">
+          <button
+            className="w-full h-full text-white font-bold text-2xl"
+            onClick={handleLogout}
+          >
+            X
+          </button>
+        </div>
       </div>
     </div>
   );
