@@ -9,6 +9,7 @@ export default function AddTransaction({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -21,7 +22,7 @@ export default function AddTransaction({
       alert(response.error);
       return;
     }
-    console.log(response);
+    reset();
     setTransactions((prevTransactions) => [...prevTransactions, response]);
   }
 
